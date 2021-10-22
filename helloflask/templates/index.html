@@ -9,10 +9,13 @@
   <body>
     <h1>Jinja Test : {{title}} 환영합니다.</h1>
     <pre>
-        ttt 한글
-        {% if True  %}
-            TTT
-        {% endif %}qqq
+      {% block body %}
+        <ul>
+          {% for song in songs %}
+            <li><a href="{{song.url}}"> {{song.title}} </a></li>
+          {% endfor %}
+        </ul>
+      {% endblock %}
     </pre>
   </body>
 </html>

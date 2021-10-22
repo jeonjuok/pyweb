@@ -3,6 +3,7 @@ from flask import session
 from flask import render_template
 from datetime import date, datetime, timedelta
 from flask.helpers import make_response
+from flask import Markup
 
 app = Flask(__name__)
 app.debug = True
@@ -18,9 +19,27 @@ app.config.update(
 )
 # Session end
 
+
+@app.route('/')
+def idx():
+    return render_template('app.html', ttt='TestTTT')
+
+
+# @app.route('/top100')
+# def top100():
+#     return render_template('application.html', title="MIN!!")
+
+
+
+
 @app.route('/tmpl')
 def tmpl():
-    return render_template('index.html', title="Title")
+    tit = Markup("<strong>Title</strong>")
+    mu = Markup("<h1>iii = <i>%s</i></h1>")
+    h = mu % "Italic"
+    print("h=", h)
+
+    return render_template('index.html', title="Title", mu=h)
 
 
 # Cookie + session start
@@ -120,6 +139,6 @@ def helloworld2():
 
 
 
-@app.route("/")
+@app.route("/hello")
 def helloworld():
     return "Hello Flask World!"
